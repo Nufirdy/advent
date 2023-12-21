@@ -61,12 +61,8 @@ public class Day5Optimized {
                 mappingsChain.add(mapping);
             }
         }
-
-
-
-
-
-        Executor executor = Executors.newFixedThreadPool(10);
+        
+        Executor executor = Executors.newWorkStealingPool();
         CountDownLatch latch = new CountDownLatch(10);
         for (Map.Entry<Long, Long> seedEntry : seedNumbers.entrySet()) {
             executor.execute(() -> {

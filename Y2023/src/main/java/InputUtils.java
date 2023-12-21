@@ -1,3 +1,5 @@
+import org.apache.commons.lang3.CharUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -43,8 +45,27 @@ public class InputUtils {
         System.out.println();
     }
 
+
+    public static void printCharArrayProportional(char[][] matrix) {
+        for (char[] chars : matrix) {
+            for (char c : chars) {
+                System.out.print(c + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
     public static <T> T[][] deepCopy(T[][] matrix) {
-        return java.util.Arrays.stream(matrix).map(el -> el.clone()).toArray($ -> matrix.clone());
+        return java.util.Arrays.stream(matrix)
+                .map(el -> el.clone())
+                .toArray($ -> matrix.clone());
+    }
+
+    public static char[][] deepCopy(char[][] matrix) {
+        return java.util.Arrays.stream(matrix)
+                .map(el -> el.clone())
+                .toArray($ -> matrix.clone());
     }
 
 
