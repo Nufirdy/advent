@@ -302,16 +302,6 @@ public class Day4 {
                 char a = xmasMatrix[i][j];
                 try {
                     if (a == 'A') {
-//                        char w = xmasMatrix[i][j - 1];
-//                        char e = xmasMatrix[i][j + 1];
-//                        if ((w == 'M' && e == 'S') || (w == 'S' && e == 'M')) {
-//                            char n = xmasMatrix[i - 1][j];
-//                            char s = xmasMatrix[i + 1][j];
-//                            if ((n == 'M' && s == 'S') || (n == 'S' && s == 'M')) {
-//                                count++;
-//                            }
-//                        }
-
                         char nw = xmasMatrix[i - 1][j - 1];
                         char se = xmasMatrix[i + 1][j + 1];
                         if ((nw == 'M' && se == 'S') || (nw == 'S' && se == 'M')) {
