@@ -1,4 +1,8 @@
+package kgnilov;
+
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.Ordering;
+import org.openjdk.jmh.annotations.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -9,16 +13,41 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.*;
 
 public class Day2 {
+
+    @State(Scope.Benchmark)
+    public static class BenchState {
+        List<String> arg;
+
+        @Setup
+        public void setupArg() throws IOException, URISyntaxException {
+            URL url = Thread.currentThread().getContextClassLoader().getResource(resourceName());
+            Path path = Paths.get(url.toURI());
+            arg = Files.readAllLines(path, StandardCharsets.UTF_8);
+        }
+    }
+
+    @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 3)
+    @Measurement(iterations = 3)
+    @Timeout(time = 3, timeUnit = TimeUnit.MINUTES)
+    public void measurePart2(BenchState state) {
+        alternativePart2(state.arg);
+    }
 
     public static void main(String[] args) throws IOException, URISyntaxException {
         URL url = Thread.currentThread().getContextClassLoader().getResource(resourceName());
         Path path = Paths.get(url.toURI());
         List<String> lines = Files.readAllLines(path, StandardCharsets.UTF_8);
 
-        part1(lines);
+//        part1(lines);
+        Stopwatch started = Stopwatch.createStarted();
         part2(lines);
+        started.stop();
+        System.out.println(started.elapsed(TimeUnit.MILLISECONDS));
     }
 
     protected static String resourceName() {
