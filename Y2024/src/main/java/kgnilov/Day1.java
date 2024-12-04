@@ -1,3 +1,5 @@
+package kgnilov;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
