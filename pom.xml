@@ -11,6 +11,7 @@
     <modules>
         <module>Y2023</module>
         <module>Y2024</module>
+        <module>common</module>
     </modules>
 
     <properties>
